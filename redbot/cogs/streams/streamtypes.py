@@ -316,16 +316,16 @@ class TwitchStream(Stream):
             status = _("Untitled broadcast")
         if is_rerun:
             status += _(" - Rerun")
-        embed = discord.Embed(title=status, url=url, color=0x6441A4)
-        embed.set_author(name=data["user_name"])
-        embed.add_field(name=_("Followers"), value=humanize_number(data["followers"]))
-        embed.add_field(name=_("Total views"), value=humanize_number(data["view_count"]))
+        embed = discord.Embed(title=status, url=url, color=0xE8AB1E)
+        embed.set_author(name=data["user_name"] + " is now live on Twitch!")
+        embed.add_field(name=_("Playing"), value=(data["game_name"]))
         embed.set_thumbnail(url=logo)
         if data["thumbnail_url"]:
             embed.set_image(url=rnd(data["thumbnail_url"].format(width=320, height=180)))
-        if data["game_name"]:
-            embed.set_footer(text=_("Playing: ") + data["game_name"])
+        embed.set_footer(text=_("[Rogue Nine] Live"))
+        embed.timestamp = datetime.now()+ timedelta(hours=-1)
         return embed
+
 
     def __repr__(self):
         return "<{0.__class__.__name__}: {0.name} (ID: {0.id})>".format(self)
