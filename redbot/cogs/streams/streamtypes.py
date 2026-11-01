@@ -459,7 +459,7 @@ class TwitchStream(Stream):
         if data["thumbnail_url"]:
             embed.set_image(url=rnd(data["thumbnail_url"].format(width=320, height=180)))
         embed.set_footer(text=_("[Rogue Nine] Live"))
-        embed.timestamp = datetime.now() + timedelta(hours=-1)
+        embed.timestamp = datetime.now()
         return embed
 
     def __repr__(self):
